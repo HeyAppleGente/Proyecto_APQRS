@@ -1,7 +1,7 @@
-"""
+'''
 APQRS - Sistema de Gestión Residencial
 
-"""
+'''
 
 import os
 import bcrypt
@@ -150,7 +150,7 @@ def api_login():
         fetchone=True,
     )
 
-    # ✅ Verificar la contraseña en Python con check_pw()
+    # Verifica la contraseña en Python con check_pw()
     if not user or not check_pw(password_input, user["password_hash"]):
         return jsonify({"error": "Usuario o contraseña incorrectos"}), 401
 
@@ -208,9 +208,9 @@ def api_me():
     })
 
 
-# ══════════════════════════════════════
-# APARTAMENTOS
-# ══════════════════════════════════════
+
+ - APARTAMENTOS
+
 
 @app.route("/api/apartamentos")
 def api_apartamentos():
@@ -221,9 +221,9 @@ def api_apartamentos():
     ))
 
 
-# ══════════════════════════════════════
-# PQRS
-# ══════════════════════════════════════
+
+- PQRS
+
 
 @app.route("/api/pqrs", methods=["GET"])
 @login_required
@@ -295,9 +295,9 @@ def api_tipopqrs():
     return jsonify(query("SELECT * FROM tipopqrs"))
 
 
-# ══════════════════════════════════════
-# CITAS
-# ══════════════════════════════════════
+
+- CITAS
+
 
 @app.route("/api/citas", methods=["GET"])
 @login_required
@@ -365,9 +365,9 @@ def api_tipocita():
     return jsonify(query("SELECT * FROM tipocita"))
 
 
-# ══════════════════════════════════════
-# NOTIFICACIONES
-# ══════════════════════════════════════
+
+- NOTIFICACIONES
+
 
 @app.route("/api/notificaciones")
 @login_required
@@ -410,9 +410,9 @@ def api_notif_todas():
     return jsonify({"ok": True})
 
 
-# ══════════════════════════════════════
-# DASHBOARD STATS
-# ══════════════════════════════════════
+
+- DASHBOARD STATS
+
 
 @app.route("/api/stats")
 @login_required
@@ -435,9 +435,9 @@ def api_stats():
     })
 
 
-# ══════════════════════════════════════
-# SEGUIMIENTO
-# ══════════════════════════════════════
+
+- SEGUIMIENTO
+
 
 @app.route("/api/seguimiento")
 @login_required
@@ -455,3 +455,10 @@ def api_seguimiento():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
+
+
+'''
+Proyecto desarrollado con ayuda de mi mentor Nicolas Sierra Guerrero, 
+Egresado del SENA, INGENIERO DE SISTEMAS
+'''
