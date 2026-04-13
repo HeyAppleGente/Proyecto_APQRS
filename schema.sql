@@ -1,6 +1,6 @@
--- ============================================================
--- APQRS - Sistema de Gestión Residencial
--- ============================================================
+
+- APQRS - Sistema de Gestión Residencial
+
 
 CREATE DATABASE IF NOT EXISTS bd_apqrs
   CHARACTER SET utf8mb4
@@ -8,9 +8,8 @@ CREATE DATABASE IF NOT EXISTS bd_apqrs
 
 USE bd_apqrs;
 
--- ──────────────────────────────────────
--- ROLES
--- ──────────────────────────────────────
+- ROLES
+
 CREATE TABLE IF NOT EXISTS rol (
   id_rol  INT          NOT NULL AUTO_INCREMENT,
   nombre  VARCHAR(50)  NOT NULL,
@@ -22,9 +21,9 @@ INSERT INTO rol (id_rol, nombre) VALUES
   (2, 'Residente');
 
 
--- ──────────────────────────────────────
--- BLOQUES Y APARTAMENTOS
--- ──────────────────────────────────────
+
+- BLOQUES Y APARTAMENTOS
+
 CREATE TABLE IF NOT EXISTS bloque (
   id_bloque INT         NOT NULL AUTO_INCREMENT,
   nombre    VARCHAR(50) NOT NULL,
@@ -35,7 +34,7 @@ CREATE TABLE IF NOT EXISTS apartamento (
   id_apartamento INT         NOT NULL AUTO_INCREMENT,
   numero         VARCHAR(10) NOT NULL,
   piso           INT         NOT NULL DEFAULT 1,
-  estado         ENUM('disponible','ocupado','mantenimiento') NOT NULL DEFAULT 'disponible',
+  estado         ENUM('Arrendado', 'Propietario') NOT NULL DEFAULT 'disponible',
   id_bloque      INT         NOT NULL,
   PRIMARY KEY (id_apartamento),
   FOREIGN KEY (id_bloque) REFERENCES bloque(id_bloque)
@@ -53,9 +52,9 @@ INSERT INTO apartamento (numero, piso, estado, id_bloque) VALUES
   ('101', 1, 'disponible', 3);
 
 
--- ──────────────────────────────────────
--- USUARIOS
--- ──────────────────────────────────────
+
+- USUARIOS
+  
 CREATE TABLE IF NOT EXISTS usuario (
   id_usuario     INT          NOT NULL AUTO_INCREMENT,
   documento      VARCHAR(20)  NOT NULL UNIQUE,
@@ -73,9 +72,9 @@ CREATE TABLE IF NOT EXISTS usuario (
   FOREIGN KEY (id_apartamento) REFERENCES apartamento(id_apartamento)
 );
 
--- ──────────────────────────────────────
--- TIPOS DE PQRS
--- ──────────────────────────────────────
+
+- TIPOS DE PQRS
+
 CREATE TABLE IF NOT EXISTS tipopqrs (
   id_tipopqrs INT         NOT NULL AUTO_INCREMENT,
   nombre      VARCHAR(50) NOT NULL,
@@ -89,9 +88,9 @@ INSERT INTO tipopqrs (nombre) VALUES
   ('Sugerencia');
 
 
--- ──────────────────────────────────────
--- PQRS
--- ──────────────────────────────────────
+
+- PQRS
+
 CREATE TABLE IF NOT EXISTS pqrs (
   id_pqrs        INT          NOT NULL AUTO_INCREMENT,
   asunto         VARCHAR(200) NOT NULL,
@@ -108,9 +107,9 @@ CREATE TABLE IF NOT EXISTS pqrs (
 );
 
 
--- ──────────────────────────────────────
--- TIPOS DE CITA
--- ──────────────────────────────────────
+
+- TIPOS DE CITA
+
 CREATE TABLE IF NOT EXISTS tipocita (
   id_tipocita INT         NOT NULL AUTO_INCREMENT,
   nombre      VARCHAR(80) NOT NULL,
@@ -124,9 +123,9 @@ INSERT INTO tipocita (nombre) VALUES
   ('Otro');
 
 
--- ──────────────────────────────────────
--- CITAS
--- ──────────────────────────────────────
+
+- CITAS
+
 CREATE TABLE IF NOT EXISTS citas (
   id_cita         INT          NOT NULL AUTO_INCREMENT,
   fecha_cita      DATETIME     NOT NULL,
@@ -143,9 +142,9 @@ CREATE TABLE IF NOT EXISTS citas (
 );
 
 
--- ──────────────────────────────────────
--- TIPOS DE NOTIFICACIÓN
--- ──────────────────────────────────────
+
+- TIPOS DE NOTIFICACIÓN
+
 CREATE TABLE IF NOT EXISTS tiponotificacion (
   id_tiponotificacion INT         NOT NULL AUTO_INCREMENT,
   nombre              VARCHAR(80) NOT NULL,
@@ -159,9 +158,9 @@ INSERT INTO tiponotificacion (nombre, icono) VALUES
   ('General','bell');
 
 
--- ──────────────────────────────────────
--- NOTIFICACIONES
--- ──────────────────────────────────────
+
+- NOTIFICACIONES
+
 CREATE TABLE IF NOT EXISTS notificaciones (
   id_notificacion     INT      NOT NULL AUTO_INCREMENT,
   titulo              VARCHAR(200) NOT NULL,
@@ -177,9 +176,9 @@ CREATE TABLE IF NOT EXISTS notificaciones (
 );
 
 
--- ──────────────────────────────────────
--- SEGUIMIENTO (bitácora)
--- ──────────────────────────────────────
+
+ - SEGUIMIENTO
+
 CREATE TABLE IF NOT EXISTS seguimiento (
   id_seguimiento INT      NOT NULL AUTO_INCREMENT,
   descripcion    TEXT     NOT NULL,
